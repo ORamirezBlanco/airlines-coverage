@@ -1,0 +1,232 @@
+{
+	"info": {
+		"_postman_id": "d606374c-bebe-44f5-836b-113f4afbdd69",
+		"name": "Airline Service Test",
+		"description": "Collection for testing Airline API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33340238",
+		"_collection_link": "https://apig09.postman.co/workspace/bbd22c5d-16f4-464f-aed7-5b91f4bb2a43/collection/33340238-d606374c-bebe-44f5-836b-113f4afbdd69?action=share&source=collection_link&creator=33340238"
+	},
+	"item": [
+		{
+			"name": "Create a valid airline",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"pm.collectionVariables.set('validId', jsonData.id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Test Airline\",\n    \"description\": \"A description of Test Airline\",\n    \"foundationDate\": \"2000-01-01T00:00:00Z\",\n    \"website\": \"http://testairline.com\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/airlines",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"airlines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create an invalid airline",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"\",\n    \"description\": \"Invalid description\",\n    \"foundationDate\": \"2025-01-01T00:00:00Z\",\n    \"website\": \"http://invalidairline.com\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/airlines",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"airlines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all airlines",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/airlines",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"airlines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get airline by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/airlines/{{validId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"airlines",
+						"{{validId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get airline by non-existing ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/airlines/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"airlines",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update an airline",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Updated Airline\",\n    \"description\": \"Updated description\",\n    \"foundationDate\": \"1999-01-01T00:00:00Z\",\n    \"website\": \"http://updatedairline.com\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/airlines/{{validId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"airlines",
+						"{{validId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update an airline with non-existing ID",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Non-existing Airline\",\n    \"description\": \"Description\",\n    \"foundationDate\": \"2000-01-01T00:00:00Z\",\n    \"website\": \"http://nonexistingairline.com\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/airlines/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"airlines",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete an airline by ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/airlines/{{validId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"airlines",
+						"{{validId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete an airline with non-existing ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/airlines/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"airlines",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "validId",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

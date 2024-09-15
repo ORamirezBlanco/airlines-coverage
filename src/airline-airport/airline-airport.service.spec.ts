@@ -166,7 +166,7 @@ describe('AirlineAirportService', () => {
       airline.airports = [];
 
       airlineRepository.findOne = jest.fn().mockResolvedValue(airline);
-      airportRepository.findByIds = jest.fn().mockResolvedValue([new AirportEntity()]); // Only one found, one missing
+      airportRepository.findByIds = jest.fn().mockResolvedValue([new AirportEntity()]); 
 
       await expect(service.updateAirportsFromAirline('1', ['1', '2'])).rejects.toThrow(BadRequestException);
     });

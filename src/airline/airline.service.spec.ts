@@ -122,7 +122,7 @@ describe('AirlineService', () => {
     it('should throw BadRequestException if update foundationDate is not in the past', async () => {
       const id = '1';
       const updateAirlineDto: UpdateAirlineDto = { 
-        foundationDate: new Date() // future date
+        foundationDate: new Date()
       };
 
       await expect(service.update(id, updateAirlineDto)).rejects.toThrow(BadRequestException);

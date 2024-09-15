@@ -1,0 +1,263 @@
+{
+	"info": {
+		"_postman_id": "a5534fae-49e8-4f6b-95c2-046d8ba7cdb6",
+		"name": "Airport Service Tests",
+		"description": "Collection of tests for the Airport Service endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33340238",
+		"_collection_link": "https://apig09.postman.co/workspace/ProyectoFinal~bbd22c5d-16f4-464f-aed7-5b91f4bb2a43/collection/33340238-a5534fae-49e8-4f6b-95c2-046d8ba7cdb6?action=share&source=collection_link&creator=33340238"
+	},
+	"item": [
+		{
+			"name": "Create a valid airport",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();",
+							"pm.collectionVariables.set('validId', jsonData.id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"packages": {},
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"Valid Airport\",\"code\":\"VAL\",\"country\":\"Country\",\"city\":\"City\"}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/airports",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"airports"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create an invalid airport",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"Invalid Airport\",\"code\":\"INV\",\"country\":\"\",\"city\":\"\"}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/airports",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"airports"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all airports",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/airports",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"airports"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get an airport by ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/airports/{{validId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"airports",
+						"{{validId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get an airport by a non-existent ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/airports/nonexistentID",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"airports",
+						"nonexistentID"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update an airport",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"Updated Airport\",\"code\":\"UPD\",\"country\":\"New Country\",\"city\":\"New City\"}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/airports/{{validId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"airports",
+						"{{validId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update an airport with a non-existent ID",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"Update Non-Existent Airport\",\"code\":\"UPDNE\",\"country\":\"Country\",\"city\":\"City\"}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/airports/nonexistentID",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"airports",
+						"nonexistentID"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete an airport by ID",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/airports/{{validId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"airports",
+						"{{validId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete an airport with a non-existent ID",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/airports/nonexistentID",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"airports",
+						"nonexistentID"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "validId",
+			"value": "s"
+		}
+	]
+}

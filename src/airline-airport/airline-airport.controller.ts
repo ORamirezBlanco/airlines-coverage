@@ -5,7 +5,6 @@ import { AirlineAirportService } from "./airline-airport.service";
 export class AirlineAirportController {
   constructor(private readonly airlineAirportService: AirlineAirportService) {}
 
-  // Agrega un aeropuerto a una aerolínea
   @Post(":airlineId/airports/:airportId")
   addAirportToAirline(
     @Param("airlineId") airlineId: string,
@@ -14,13 +13,11 @@ export class AirlineAirportController {
     return this.airlineAirportService.addAirportToAirline(airlineId, airportId);
   }
 
-  // Encuentra todos los aeropuertos asociados a una aerolínea
   @Get(":airlineId/airports")
   findAirportsFromAirline(@Param("airlineId") airlineId: string) {
     return this.airlineAirportService.findAirportsFromAirline(airlineId);
   }
 
-  // Encuentra un aeropuerto específico asociado a una aerolínea
   @Get(":airlineId/airports/:airportId")
   findAirportFromAirline(
     @Param("airlineId") airlineId: string,
@@ -29,7 +26,6 @@ export class AirlineAirportController {
     return this.airlineAirportService.findAirportFromAirline(airlineId, airportId);
   }
 
-  // Actualiza la lista de aeropuertos asociados a una aerolínea
   @Put(":airlineId/airports")
   updateAirportsFromAirline(
     @Param("airlineId") airlineId: string,
@@ -38,7 +34,6 @@ export class AirlineAirportController {
     return this.airlineAirportService.updateAirportsFromAirline(airlineId, airportIds);
   }
 
-  // Elimina un aeropuerto de una aerolínea
   @Delete(":airlineId/airports/:airportId")
   deleteAirportFromAirline(
     @Param("airlineId") airlineId: string,

@@ -77,7 +77,7 @@ describe('AirportService', () => {
     it('should throw BadRequestException if airport code is not 3 characters long', async () => {
       const createAirportDto: CreateAirportDto = { 
         name: 'Test Airport', 
-        code: 'AB', // Invalid code length
+        code: 'AB', 
         country: 'Test Country', 
         city: 'Test City' 
       };
